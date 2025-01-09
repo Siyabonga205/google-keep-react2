@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import "./Form.css";
-import { uid } from 'uid';
-
+import { uid } from "uid";
+import AddAlertIcon from "@mui/icons-material/AddAlert";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import PaletteIcon from "@mui/icons-material/Palette";
+import ImageIcon from "@mui/icons-material/Image";
+import ArchiveIcon from "@mui/icons-material/Archive";
+import UndoIcon from "@mui/icons-material/Undo";
+import RedoIcon from "@mui/icons-material/Redo";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import BrushIcon from "@mui/icons-material/Brush";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 const Form = (props) => {
   const { edit, selectedNote, toggleModal } = props;
@@ -11,14 +20,14 @@ const Form = (props) => {
 
   const titleChangeHandler = (event) => setTitle(event.target.value);
   const textChangeHandler = (event) => {
-    setText(event.target.value)
+    setText(event.target.value);
     setIsActiveForm(true);
   };
 
   const submitFormHandler = (event) => {
     event.preventDefault();
 
-    if(!edit) {
+    if (!edit) {
       props.addNote({
         id: uid(),
         title,
@@ -29,14 +38,13 @@ const Form = (props) => {
       props.editNote({
         id: selectedNote.id,
         title,
-        text
-      })
-      toggleModal()
+        text,
+      });
+      toggleModal();
     }
 
     setTitle("");
     setText("");
-    
   };
 
   const formClickHandler = () => {
@@ -46,7 +54,10 @@ const Form = (props) => {
   return (
     <div>
       <div className="form-container active-form" onClick={formClickHandler}>
-        <form onSubmit={submitFormHandler} className={isActiveForm ? "form" : ""}>
+        <form
+          onSubmit={submitFormHandler}
+          className={isActiveForm ? "form" : ""}
+        >
           {isActiveForm && (
             <input
               onChange={titleChangeHandler}
@@ -56,6 +67,7 @@ const Form = (props) => {
               placeholder="Title"
             />
           )}
+
           <input
             onChange={textChangeHandler}
             value={text}
@@ -63,55 +75,41 @@ const Form = (props) => {
             type="text"
             placeholder="Take a note..."
           />
+
           {isActiveForm ? (
             <div className="form-actions">
               <div className="icons">
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    add_alert
-                  </span>
+                  <AddAlertIcon className="brush" />
                   <span className="tooltip-text">Remind me</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    person_add
-                  </span>
+                  <PersonAddAltIcon className="brush" />
                   <span className="tooltip-text">Collaborator</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    palette
-                  </span>
+                  <PaletteIcon className="brush" />
+
                   <span className="tooltip-text">Change Color</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    image
-                  </span>
+                  <ImageIcon className="brush" />
                   <span className="tooltip-text">Add Image</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    archive
-                  </span>
+                  <ArchiveIcon className="brush" />
                   <span className="tooltip-text">Archive</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    more_vert
-                  </span>
+                  <MoreVertIcon className="brush" />
                   <span className="tooltip-text">More</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    undo
-                  </span>
+                  <UndoIcon className="brush" />
                   <span className="tooltip-text">Undo</span>
                 </div>
                 <div className="tooltip">
-                  <span className="material-icons-outlined hover small-icon">
-                    redo
-                  </span>
+                  <RedoIcon className="brush" />
                   <span className="tooltip-text">Redo</span>
                 </div>
               </div>
@@ -122,15 +120,15 @@ const Form = (props) => {
           ) : (
             <div className="form-actions">
               <div className="tooltip">
-                <span className="material-icons-outlined hover">check_box</span>
+                <CheckBoxIcon className="checkbox" />
                 <span className="tooltip-text">New List</span>
               </div>
               <div className="tooltip">
-                <span className="material-icons-outlined hover">brush</span>
+                <BrushIcon className="brush" />
                 <span className="tooltip-text">New Drawing</span>
               </div>
               <div className="tooltip">
-                <span className="material-icons-outlined hover">image</span>
+                <ImageIcon className="image" />
                 <span className="tooltip-text">New Image</span>
               </div>
             </div>
@@ -142,3 +140,10 @@ const Form = (props) => {
 };
 
 export default Form;
+
+//
+//
+//
+//
+//
+//

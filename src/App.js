@@ -17,30 +17,26 @@ const App = () => {
       return [...prevNotes, note];
     });
   };
-  const addNote3 = (note) => {
-    const demo = "test"
-    console.log("This is a test...")
-    setNotes((prevNotes) => {
-      return [...prevNotes, note];
-    });
-  };
+
   const editNote = (editedNote) => {
-    setNotes(prevNotes => {
-      const newArray = prevNotes.map(note => {
-        if(editedNote.id === note.id) {
-          note.title = editedNote.title
-          note.text = editedNote.text
+    setNotes((prevNotes) => {
+      const newArray = prevNotes.map((note) => {
+        if (editedNote.id === note.id) {
+          note.title = editedNote.title;
+          note.text = editedNote.text;
         }
         return note;
-      })
+      });
       return newArray;
-    })
-  }
+    });
+  };
+
   const deleteNote = (id) => {
     setNotes((prevNotes) => {
       return prevNotes.filter((note) => id !== note.id);
     });
   };
+
   const toggleModal = () => {
     // open or close the modal based on previous state - setIsModalOpen
     setIsModalOpen((prevState) => {
@@ -60,12 +56,22 @@ const App = () => {
         setSelectedNote={setSelectedNote}
       />
       {isModalOpen && (
-        <Modal isModalOpen={isModalOpen} selectedNote={selectedNote} toggleModal={toggleModal} editNote={editNote}/>
+        <Modal
+          isModalOpen={isModalOpen}
+          selectedNote={selectedNote}
+          toggleModal={toggleModal}
+          editNote={editNote}
+        />
       )}
     </div>
   );
 };
 
 export default App;
+
+// use Arrow functions vs regular functions
+// regular functions are calleble and constructible
+// this inside a regular function is bound to the function
+// arrow function only return one statement
 
 
